@@ -20,3 +20,7 @@ Para adicionar um serviço real, use um ID estável e único, preencha os campos
 `public/images/` corresponde à URL `/images/`. Ao substituir um placeholder, atualizar manifesto, dimensões reais, descrição alternativa e referência de autorização. Imagens decorativas usam `alt: ""`; fotografias informativas recebem descrição contextual. Os SVGs provisórios não são fotos nem proposta visual da marca.
 
 A interface, tokens, Header, Serviços e Sobre pertencem aos PRs posteriores e dependem do Figma aprovado. Este PR não muda arquivos existentes, dependências ou configuração.
+
+## Espaços de imagens por área
+
+`imageSlots` separa três espaços de serviços, um de apresentação e quatro de galeria. São referências provisórias para organizar a entrega dos materiais, sem preencher o catálogo real ou definir a interface. Veja a prancha em `public/images/README.md`. Cada espaço tem caminho, dimensões e pendência próprios; aplicam-se as mesmas regras de aprovação e consumo acima.
