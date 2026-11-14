@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Base provisória. Identidade visual e tokens serão definidos no PR-004. */
+body {
+  background: white;
+  color: black;
+  font-family: system-ui, sans-serif;
+}
