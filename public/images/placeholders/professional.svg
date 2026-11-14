@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800" role="img" aria-labelledby="title description">
+  <title id="title">Placeholder de retrato</title>
+  <desc id="description">Imagem provisória para desenvolvimento. Material aprovado pendente.</desc>
+  <rect width="600" height="800" fill="#eeeeee"/>
+  <rect x="24" y="24" width="552" height="752" fill="none" stroke="#666666" stroke-dasharray="8 8"/>
+  <text x="50%" y="48%" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#333333">PLACEHOLDER - RETRATO</text>
+  <text x="50%" y="55%" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#333333">Imagem aprovada pendente</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title description">
+  <title id="title">Placeholder de serviço</title>
+  <desc id="description">Imagem provisória para desenvolvimento. Material aprovado pendente.</desc>
+  <rect width="800" height="600" fill="#eeeeee"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#666666" stroke-dasharray="8 8"/>
+  <text x="50%" y="48%" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#333333">PLACEHOLDER - SERVIÇO</text>
+  <text x="50%" y="55%" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#333333">Imagem aprovada pendente</text>
+</svg>
