@@ -2,9 +2,9 @@
 
 Website institucional da Áurea Beauty Studio, de Lorrayne Nunes, desenvolvido pela Kise Studios. O MVP apresentará a profissional, serviços e resultados autorizados e encaminhará visitantes para uma conversa no WhatsApp. Essas funcionalidades ainda não foram implementadas.
 
-## Estado atual: PR-001 / Onda 0
+## Estado atual: Onda 0 — fundação, conteúdo e CI
 
-Somente a fundação técnica está implementada. A rota `/` contém uma identificação neutra e a mensagem de preparação técnica. Não há conteúdo comercial, componentes finais, integrações, autenticação, banco de dados, APIs ou publicação em produção.
+PR-001 e PR-002 estão integrados à `main`: fundação técnica e estrutura de conteúdo/assets provisórios. O PR-003 acrescenta a CI e aguarda revisão e merge autorizado. A rota `/` contém uma identificação neutra e a mensagem de preparação técnica. Não há conteúdo comercial, componentes finais, integrações, autenticação, banco de dados, APIs ou publicação em produção.
 
 O **Figma aprovado é a fonte oficial da interface**: desktop, mobile, tipografia, cores, espaçamentos e interações. PDFs e a prancha do Instagram @aureabyln são referências de planejamento e conteúdo; não substituem o handoff. O link e o registro de aprovação do Figma ainda precisam ser fornecidos antes do PR-004. Nenhuma imagem da prancha foi incorporada à aplicação.
 
@@ -30,12 +30,12 @@ Instale Git, Node.js 24.x e npm 11.x. A `.nvmrc` permite selecionar a linha 24 c
 ```sh
 git clone https://github.com/KiseStudios/aureabyln.git
 cd aureabyln
-git switch chore/pr-001-foundation
+git switch main
 npm ci
 npm run dev
 ```
 
-Durante a revisão, utilize a branch acima. Após o merge autorizado, novos trabalhos devem partir da `main` atualizada.
+Para revisar esta entrega, use `git fetch origin` e `git switch chore/pr-003-ci-quality`. Novos trabalhos devem partir da `main` atualizada após seus pré-requisitos serem integrados.
 
 Acesse http://localhost:3000. `npm ci` reproduz o lockfile; use `npm install` ao alterar dependências, revisando o diff do manifesto e do lockfile. Nenhuma variável de ambiente é necessária nesta etapa, portanto não há `.env.example`.
 
@@ -56,7 +56,7 @@ npm run build
 npm start
 ```
 
-Lint é independente do build e deve ser executado explicitamente. `next typegen` permite verificar tipos também em um checkout limpo. `next-env.d.ts`, `.next/` e arquivos incrementais são gerados localmente e não são versionados. Não existe suíte de testes nem script `test` nesta entrega. Os workflows de CI pertencem ao PR-003.
+Lint é independente do build e deve ser executado explicitamente. `next typegen` permite verificar tipos também em um checkout limpo. `next-env.d.ts`, `.next/` e arquivos incrementais são gerados localmente e não são versionados. Não existe suíte de testes nem script `test` nesta entrega. A CI do PR-003 executa instalação, lint, typecheck e build em PRs para `main` e pushes em `main`. Veja [docs/ci-quality.md](docs/ci-quality.md) para baseline, validações e limites.
 
 ## Estrutura inicial
 
@@ -66,15 +66,20 @@ src/
     layout.tsx       # Documento raiz, idioma pt-BR e CSS global
     page.tsx         # Página provisória de verificação
     globals.css      # Tailwind e estilos neutros provisórios
+  content/           # Contratos e placeholders do PR-002
   components/
     ui/              # Reservado aos componentes compartilhados
     layout/          # Reservado a componentes de estrutura
     sections/        # Reservado às seções futuras
   lib/               # Reservado a funções compartilhadas
   types/             # Reservado a tipos compartilhados
-public/              # Reservado a arquivos estáticos
+public/
+  images/            # Manifesto visual, placeholders e orientações do PR-002
+.github/workflows/
+  ci.yml             # CI de instalação, lint, tipos e build
 docs/
   architecture.md    # Decisões e limites técnicos
+  ci-quality.md      # Baseline técnico, CI e gate do PR-004
 README.md
 AGENTS.md            # Contexto do projeto e documentação local do Next.js
 eslint.config.mjs
@@ -89,7 +94,7 @@ package-lock.json
 .gitignore
 ```
 
-Diretórios reservados e vazios não são rastreados pelo Git: estão documentados aqui e serão criados quando receberem arquivos reais. O alias `@/*` aponta para `src/*`. `src/content/` e `public/images/` serão preparados exclusivamente por Felipe no PR-002.
+Diretórios reservados e vazios não são rastreados pelo Git: estão documentados aqui e serão criados quando receberem arquivos reais. O alias `@/*` aponta para `src/*`. `src/content/` e `public/images/` foram preparados no PR-002 e permanecem sob responsabilidade de Felipe.
 
 ## Colaboração e responsabilidades
 
@@ -101,13 +106,13 @@ Diretórios reservados e vazios não são rastreados pelo Git: estão documentad
 
 Cada entrega utiliza uma branch e um Pull Request próprio. Antes de começar, sincronize a `main`, crie a branch da tarefa e mantenha o trabalho dentro do seu escopo. Antes de pedir revisão, atualize a branch com a `main`, resolva conflitos e execute lint, typecheck, build e testes que existirem.
 
-Revisão cruzada: **Felipe revisa Luan; Kaua revisa Felipe; Luan revisa Kaua**. Ninguém aprova o próprio PR. Mudanças em arquivos de outro responsável precisam de alinhamento. O PR-001 utiliza `chore/pr-001-foundation` e tem a `main` como destino. Não realizar merge sem autorização do responsável pelo projeto.
+Revisão cruzada: **Felipe revisa Luan; Kaua revisa Felipe; Luan revisa Kaua**. Ninguém aprova o próprio PR. Mudanças em arquivos de outro responsável precisam de alinhamento. O PR-003 utiliza `chore/pr-003-ci-quality` e tem a `main` como destino. A revisão prevista para o trabalho de Kaua é de Luan, sempre por conta distinta do autor do PR. Não realizar merge sem autorização do responsável pelo projeto.
 
 ## Próximas dependências
 
-- **PR-002 / Felipe:** iniciar após revisão, aceite e merge autorizado do PR-001, a partir da `main` atualizada. Preparar conteúdo tipado e assets, com placeholders identificados e sem inventar informações.
-- **PR-003 / Kaua:** iniciar a partir da mesma base integrada, usando scripts e lockfile deste PR. Criar CI e sua própria trilha de qualidade; não assumir testes inexistentes.
-- **PR-004 e UI posterior:** dependem da Onda 0 integrada e do handoff Figma desktop/mobile aprovado. Tokens, componentes, stubs e seções ficam para seus PRs próprios.
+- **PR-001 e PR-002:** integrados. Os contratos de conteúdo de Felipe estão disponíveis, com aprovações ainda pendentes nos campos marcados como placeholders.
+- **PR-003 / Kaua:** CI implementada nesta branch; conferir execução remota e revisão independente antes do merge autorizado.
+- **PR-004 / Luan:** bloqueado até PR-003 integrado à `main` e handoff Figma desktop/mobile disponível e aprovado, com link, versão e referência de aceite. Nenhuma implementação visual foi iniciada.
 
 Aprovação da cliente e do CEO é obrigatória para publicar em produção. Este PR não configura deploy nem serviços externos.
 
