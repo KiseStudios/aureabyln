@@ -1,6 +1,6 @@
 # Arquitetura inicial — PR-001
 
-Status: fundação técnica para revisão, sem aceite final ou publicação.
+Status: fundação e conteúdo dos PR-001/002 integrados; CI proposta no PR-003, sem merge ou publicação em produção.
 
 ## Referências e precedência
 
@@ -23,13 +23,13 @@ O Figma aprovado será a referência oficial da interface. O PDF UX representa b
 
 `layout.tsx` define o idioma `pt-BR` e importa os estilos. `page.tsx` renderiza somente um `main`, um título e uma mensagem de preparação. Não contém Header, Footer, Hero, serviços, galeria, contato, imagens ou informações comerciais. Metadados de SEO, Open Graph, robots e sitemap pertencem ao PR-013.
 
-Não foram implementados `src/content/`, assets do PR-002, workflows do PR-003, tokens/stubs do PR-004 ou Button/Container/Section do PR-005.
+O PR-002 integrado acrescentou `src/content/` e assets provisórios. O PR-003 acrescenta o workflow de CI. Tokens/stubs do PR-004 e Button/Container/Section do PR-005 continuam fora desta entrega.
 
 ## Histórico e integração
 
-O repositório remoto estava vazio na inspeção inicial: sem commits, branches ou PRs. A inicialização prevista estabelece apenas um README mínimo na `main`; toda a implementação é isolada em `chore/pr-001-foundation`. A criação/publicação remota e a abertura do PR dependem de permissão de escrita efetiva.
+O repositório remoto estava vazio na inspeção inicial: sem commits, branches ou PRs. A inicialização estabeleceu apenas um README mínimo na `main`; a fundação foi implementada em `chore/pr-001-foundation`. O acesso de escrita foi regularizado e os PRs #1 e #2 foram posteriormente integrados.
 
-Felipe revisa esta entrega. Não realizar merge automático. Após aceite e merge autorizado, PR-002 e PR-003 partem da `main` atualizada. O PR-004 depende do handoff do Figma e da Onda 0 integrada.
+A matriz permanece: Felipe revisa Luan, Kaua revisa Felipe, Luan revisa Kaua. Não realizar merge automático ou autoaprovação. O PR-003 parte da `main` com PR-001/002 integrados. O PR-004 depende do handoff do Figma e do PR-003 integrado.
 
 ## Verificação e homologação local
 
@@ -49,3 +49,9 @@ Para conferir a versão compilada, encerrar o servidor de desenvolvimento e exec
 - [Instalação e requisitos do Next.js](https://nextjs.org/docs/app/getting-started/installation)
 - [ESLint no Next.js](https://nextjs.org/docs/app/api-reference/config/eslint)
 - [Tailwind CSS com Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs)
+
+## CI e qualidade — PR-003
+
+O workflow `.github/workflows/ci.yml` executa instalação pelo lockfile, lint, typecheck e build em PRs para main e pushes na main, com Node.js 24, cache npm, permissão `contents: read` e actions oficiais fixadas por SHA. Não há suíte de testes, segredos personalizados ou deploy. Falhas dos comandos interrompem o job; concorrência e timeout limitam execuções redundantes.
+
+Resultados, baseline, limitações de dependências, revisão cruzada e bloqueios do PR-004 estão em [ci-quality.md](ci-quality.md). A aprovação do PR-003 não constitui aprovação de design: nenhuma extração de tokens ou criação de stubs pode ocorrer antes de receber link, versão e aceite do Figma desktop/mobile e integrar o PR-003 com autorização.
