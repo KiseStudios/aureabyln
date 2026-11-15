@@ -4,9 +4,9 @@ Website institucional da Áurea Beauty Studio, de Lorrayne Nunes, desenvolvido p
 
 ## Estado atual: Onda 0 — fundação, conteúdo e CI
 
-PR-001 e PR-002 estão integrados à `main`: fundação técnica e estrutura de conteúdo/assets provisórios. O PR-003 acrescenta a CI e aguarda revisão e merge autorizado. A rota `/` contém uma identificação neutra e a mensagem de preparação técnica. Não há conteúdo comercial, componentes finais, integrações, autenticação, banco de dados, APIs ou publicação em produção.
+PR-001 e PR-002 estão integrados à `main`: fundação técnica e estrutura de conteúdo/assets provisórios. O PR-003 está integrado e executa a CI. A rota `/` contém uma identificação neutra e a mensagem de preparação técnica. Não há conteúdo comercial, componentes finais, integrações, autenticação, banco de dados, APIs ou publicação em produção.
 
-O **Figma aprovado é a fonte oficial da interface**: desktop, mobile, tipografia, cores, espaçamentos e interações. PDFs e a prancha do Instagram @aureabyln são referências de planejamento e conteúdo; não substituem o handoff. O link e o registro de aprovação do Figma ainda precisam ser fornecidos antes do PR-004. Nenhuma imagem da prancha foi incorporada à aplicação.
+O **Figma aprovado é a fonte oficial da interface**: desktop, mobile, tipografia, cores, espaçamentos e interações. PDFs e a prancha do Instagram @aureabyln são referências de planejamento e conteúdo; não substituem o handoff. A proposta visual v1 do PR-004 aguarda aceite. Veja os frames e os critérios em [docs/design-system.md](docs/design-system.md). Nenhuma imagem da prancha foi incorporada à aplicação.
 
 ## Tecnologias
 
@@ -35,7 +35,7 @@ npm ci
 npm run dev
 ```
 
-Para revisar esta entrega, use `git fetch origin` e `git switch chore/pr-003-ci-quality`. Novos trabalhos devem partir da `main` atualizada após seus pré-requisitos serem integrados.
+Para revisar esta entrega, use `git fetch origin` e `git switch feat/pr-004-design-foundation`. Novos trabalhos devem partir da `main` atualizada após seus pré-requisitos serem integrados.
 
 Acesse http://localhost:3000. `npm ci` reproduz o lockfile; use `npm install` ao alterar dependências, revisando o diff do manifesto e do lockfile. Nenhuma variável de ambiente é necessária nesta etapa, portanto não há `.env.example`.
 
@@ -111,8 +111,8 @@ Revisão cruzada: **Felipe revisa Luan; Kaua revisa Felipe; Luan revisa Kaua**. 
 ## Próximas dependências
 
 - **PR-001 e PR-002:** integrados. Os contratos de conteúdo de Felipe estão disponíveis, com aprovações ainda pendentes nos campos marcados como placeholders.
-- **PR-003 / Kaua:** CI implementada nesta branch; conferir execução remota e revisão independente antes do merge autorizado.
-- **PR-004 / Luan:** bloqueado até PR-003 integrado à `main` e handoff Figma desktop/mobile disponível e aprovado, com link, versão e referência de aceite. Nenhuma implementação visual foi iniciada.
+- **PR-003 / Kaua:** CI integrada à main.
+- **PR-004 / Luan:** proposta visual desktop/mobile em revisão por Felipe e pelo responsável. A adoção do tema depende do aceite.
 
 Aprovação da cliente e do CEO é obrigatória para publicar em produção. Este PR não configura deploy nem serviços externos.
 

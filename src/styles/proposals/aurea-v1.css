@@ -1,0 +1,22 @@
+/* PR-004 • Proposta em revisão. Importação reservada ao aceite visual. */
+@theme {
+  --color-aurea-paper: #f9f3ea;
+  --color-aurea-ink: #34241f;
+  --color-aurea-rose: #e3c6b6;
+  --color-aurea-wine: #713e44;
+  --color-aurea-hover: #553039;
+  --color-aurea-line: #b99f91;
+  --color-aurea-mute: #61534e;
+  --color-aurea-focus: #72450e;
+  --color-aurea-disabled: #d6c9c0;
+
+  --font-aurea-display: "Instrument Serif", Georgia, serif;
+  --font-aurea-body: "DM Sans", system-ui, sans-serif;
+  --text-aurea-display: 6.25rem;
+  --text-aurea-display-mobile: 3.75rem;
+  --text-aurea-heading: 4rem;
+  --text-aurea-heading-mobile: 2.75rem;
+  --container-aurea: 78rem;
+  --breakpoint-aurea-wide: 48rem;
+  --radius-aurea-action: 100px;
+}
