@@ -1,0 +1,64 @@
+# Áurea Beauty Studio · proposta visual v1
+
+Direção de arte em revisão pelo responsável. A base estrutural orienta a ordem de leitura. As escolhas abaixo passam a orientar a implementação visual somente após aceite registrado. Nenhum token de marca está aprovado nesta versão.
+
+## Handoff editável
+
+| Referência | Frame | Captura desta revisão |
+| --- | --- | --- |
+| [Desktop · 1440 px](https://www.figma.com/design/hmKnzeyzoxJPO1ECJL3jnr/?node-id=12-2) | `12:2` | [Desktop](design-v1/desktop.webp) |
+| [Mobile · 390 px](https://www.figma.com/design/hmKnzeyzoxJPO1ECJL3jnr/?node-id=12-93) | `12:93` | [Mobile](design-v1/mobile.webp) |
+| [Sistema visual · variáveis e estados](https://www.figma.com/design/hmKnzeyzoxJPO1ECJL3jnr/?node-id=11-14) | `11:14` | Página de proposta `11:2` |
+
+A página original conserva o sitemap (2:2), desktop (2:3), mobile (2:4), componentes (2:5) e anotações (2:6). “v1” identifica esta proposta e suas capturas de 15/11/2026. Os links de frames abrem a edição corrente do arquivo.
+
+## Direção de arte e tokens propostos
+
+Abertura em duas colunas, título em duas linhas e fotografia fechada sobre o olhar. O itálico dá ênfase à segunda linha. O CTA em vinho reaparece como campo de cor no contato. Filetes separam o catálogo editorial, que pode crescer sem fixar uma quantidade de serviços. Uma alternativa de cards fotográficos depende de receber catálogo e imagens consistentes. As curvas abstratas apresentam possibilidades de recorte para retrato e resultados.
+
+| Variável Figma | Hex | Papel e combinação |
+| --- | --- | --- |
+| cor/paper | #F9F3EA | Fundo marfim e texto sobre vinho |
+| cor/ink | #34241F | Texto principal sobre marfim ou rosa |
+| cor/rose | #E3C6B6 | Fundo da seção Serviços |
+| cor/wine | #713E44 | Acento, ação primária e fundo do contato |
+| cor/hover | #553039 | Fundo da ação ao passar o ponteiro |
+| cor/line | #B99F91 | Divisórias decorativas de 1 px |
+| cor/mute | #61534E | Legendas em superfícies claras |
+| cor/focus | #72450E | Anel externo de 3 px em superfície clara |
+| cor/disabled | #D6C9C0 | Fundo de controle indisponível |
+
+No CSS de proposta, `cor/wine` corresponde a `--color-aurea-wine`, e as demais cores seguem o mesmo padrão. O arquivo usa o bloco `@theme` do Tailwind 4. A aplicação não o importa. O carregamento das fontes será definido com o aceite.
+
+| Uso | Desktop / mobile | Família e peso |
+| --- | --- | --- |
+| Título do Hero | 100 / 60 px | Instrument Serif, regular e itálico, 400 |
+| Título de seção | 64 / 44 px | Instrument Serif, 400 |
+| Contato | 72 / 44 px | Instrument Serif Italic, 400 |
+| Corpo e navegação | 16–18 px | DM Sans, 400 ou 500 |
+| Legenda | 14 px | DM Sans, 400 ou 500 |
+
+Entrelinha proposta de 108% nos títulos e 140% no texto. Espaços de 4, 8, 16, 24, 32, 48, 64 e 96 px correspondem a múltiplos da unidade de 4 px do Tailwind. Fotos com cantos retos, sem sombra. Botão com raio de 100 px e padding de 16 × 24 px. Link textual sublinhado. No futuro componente, usar foco visível com afastamento e contraste adequado à superfície, inclusive foco claro sobre vinho. A amostra disabled documenta aparência. Um destino ausente impede renderizar link de agendamento.
+
+## Composição e responsividade
+
+Desktop com largura útil máxima de 1248 px, margens de 96 px em 1440, 12 colunas e gutter de 24 px. Mobile com 342 px úteis, margens de 24 px em 390, quatro colunas e gutter de 16 px. A partir de 768 px, testar o espaço antes de abrir a segunda coluna. A ordem mobile é título, CTA e imagem, com o menu compacto. A galeria conserva dois estudos lado a lado. Validar 320 px, zoom de 200% e navegação por teclado na implementação.
+
+## Contratos e aprovação
+
+O contrato `src/components/sections/anchors.ts` fixa as âncoras do sitemap. Header e Footer ficam fora do conteúdo principal. Entre Resultados e Contato, inserir Experiência e Confiança somente quando houver material com aceite e autorização. Sem esse material, a navegação segue diretamente para Contato.
+
+Consumir `services`, `professional`, `images` e `imageSlots` de Felipe. Verificar `status === "approved"` por campo e conferir `approvalReference`. O catálogo real está vazio. Foto conceitual gerada por IA, grafismos, nome de apresentação e chamada editorial são material de revisão. Solicitar catálogo, biografia, retrato, resultados autorizados e texto e destino de agendamento. O Instagram serve de referência visual.
+
+Para aprovar, registrar responsável, data, frames e versão aceita no Figma ou no PR. Revisar paleta, famílias, hierarquia, ritmo, direção fotográfica e CTA nos dois tamanhos. Vincular o aceite dos textos e imagens separadamente. Divergências devem retornar aos frames antes de promover o tema. Felipe faz a revisão cruzada do trabalho de Luan.
+
+| PR | Responsável | Handoff após aceite |
+| --- | --- | --- |
+| 005 | Luan | Button, Container e Section, com foco, estados e grid responsivo |
+| 006 | Felipe | Header e menu mobile usando as âncoras compartilhadas |
+| 007 | Kaua | Footer e cards atribuídos com os estados do caderno |
+| 008 | Luan | Hero com texto e fotografia autorizados |
+| 009 | Felipe | Serviços a partir do catálogo aprovado |
+| 010 | Felipe | Sobre com nome público, biografia e retrato aprovados |
+| 011 | Kaua | Galeria com autorização e texto alternativo de cada foto |
+| 012 | Kaua | Contato com texto e destino de WhatsApp confirmados |

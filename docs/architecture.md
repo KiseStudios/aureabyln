@@ -1,12 +1,12 @@
 # Arquitetura inicial — PR-001
 
-Status: fundação e conteúdo dos PR-001/002 integrados; CI proposta no PR-003, sem merge ou publicação em produção.
+Fundação, contratos de conteúdo e CI integrados à main. O PR-004 introduz a proposta visual em revisão.
 
 ## Referências e precedência
 
 Foram consultados `Aureabyln Projeto Estrutura.pdf` (sitemap, wireframes e handoff), `Kise Aureabylnprojeto.pdf` (DOC-ENG-001, v1.1) e os planos individuais `Kise AureabylnLuan.pdf`, `Kise AureabylnFelipe.pdf` e `Kise AureabylnKaua.pdf` (v1.2). A prancha @aureabyln é material de apoio; suas imagens não são assets originais da aplicação.
 
-O Figma aprovado será a referência oficial da interface. O PDF UX representa baixa fidelidade, com medidas e interações propostas, sujeitas à validação. Não converter essas propostas em tokens ou componentes definitivos neste PR. Link, versão e aceite do Figma continuam pendentes para o PR-004.
+O Figma aprovado será a referência oficial da interface. O PDF UX representa baixa fidelidade, com medidas e interações propostas, sujeitas à validação. Não converter essas propostas em tokens ou componentes definitivos neste PR. Frames e versão da proposta estão em [design-system.md](design-system.md). O aceite visual está pendente.
 
 ## Decisões técnicas
 
@@ -54,4 +54,4 @@ Para conferir a versão compilada, encerrar o servidor de desenvolvimento e exec
 
 O workflow `.github/workflows/ci.yml` executa instalação pelo lockfile, lint, typecheck e build em PRs para main e pushes na main, com Node.js 24, cache npm, permissão `contents: read` e actions oficiais fixadas por SHA. Não há suíte de testes, segredos personalizados ou deploy. Falhas dos comandos interrompem o job; concorrência e timeout limitam execuções redundantes.
 
-Resultados, baseline, limitações de dependências, revisão cruzada e bloqueios do PR-004 estão em [ci-quality.md](ci-quality.md). A aprovação do PR-003 não constitui aprovação de design: nenhuma extração de tokens ou criação de stubs pode ocorrer antes de receber link, versão e aceite do Figma desktop/mobile e integrar o PR-003 com autorização.
+Resultados, baseline, limitações de dependências, revisão cruzada e bloqueios do PR-004 estão em [ci-quality.md](ci-quality.md). O PR-004 prepara tokens isolados em `src/styles/proposals/` e âncoras em `src/components/sections/`. A promoção do tema para o CSS global depende de aprovação visual.
