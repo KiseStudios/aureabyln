@@ -62,3 +62,42 @@ Para aprovar, registrar responsável, data, frames e versão aceita no Figma ou 
 | 010 | Felipe | Sobre com nome público, biografia e retrato aprovados |
 | 011 | Kaua | Galeria com autorização e texto alternativo de cada foto |
 | 012 | Kaua | Contato com texto e destino de WhatsApp confirmados |
+
+## PR-005 · componentes disponíveis
+
+Importe `Button`, `Container` e `Section` de `@/components/ui`. Os três aceitam `children`, `className`, ref e atributos nativos do elemento correspondente. Funcionam em Server Components. Um consumidor com manipuladores como `onClick` deve ser um Client Component.
+
+| Componente | Contrato funcional e medidas provisórias |
+| --- | --- |
+| Button | `variant="primary"\| "secondary"`, `size="regular"\| "compact"`. Padrão primary/regular. Alturas mínimas de 48/44 px. Ação nativa com `type="button"` por padrão e suporte a submit, reset e disabled. Com href válido, renderiza âncora nativa interna ou externa. A tipagem exclui disabled em links. |
+| Container | Div centralizada. Padding lateral de 24 px, 48 px a partir de 768 e 96 px a partir de 1280. Limite externo de 1440 px incluindo padding, equivalente aos 1248 px úteis de `--container-aurea` no desktop. Aos 390 px restam 342 px úteis. |
+| Section | Seção semântica com padding vertical de 48, 64 e 96 px nos mesmos intervalos. Passe id e aria-labelledby. O consumidor escolhe o heading adequado e compõe Container quando precisar de alinhamento. |
+
+A geometria segue o estudo v1. Os controles usam tons neutros até a aprovação das cores paper, wine, hover, focus e disabled. A cápsula antecipa o papel de radius-aurea-action. A variante secundária é uma alternativa funcional de contorno em revisão. O tema de proposta continua isolado.
+
+```tsx
+import { sectionAnchors } from "@/components/sections/anchors";
+import { Button, Container, Section } from "@/components/ui";
+
+<Section id={sectionAnchors.gallery} aria-labelledby="gallery-title">
+  <Container>
+    <h2 id="gallery-title">Resultados</h2>
+    <Button href={`#${sectionAnchors.hero}`} variant="secondary">Voltar ao início</Button>
+  </Container>
+</Section>
+```
+
+Para agendamento, o consumidor verifica o contrato do PR-002 antes de passar o destino. Exemplo com um objeto `service` do tipo `Service`:
+
+```tsx
+const { cta } = service;
+return cta.status === "approved" && cta.value?.href.trim()
+  ? <Button href={cta.value.href}>{cta.value.label}</Button>
+  : null;
+```
+
+Felipe pode compor o Header com Container, usar Button como ação do menu e âncoras para destinos reais. Kaua pode alinhar o Footer com Container e usar Button como link de card quando houver destino. Evitar controles interativos aninhados. Usar Section para agrupamentos temáticos dentro da página e os elementos header/footer para os respectivos marcos.
+
+### Revisão local
+
+Execute `npm ci` e `npm run dev` e abra `/dev/componentes`. Preencha o campo e acione “Limpar campo” por teclado. Com Tab, confira o anel de foco, o salto sobre o controle indisponível e o link “Ver estrutura”. Compare 390 e 1440 px. A rota retorna 404 no build de produção. A identidade definitiva e o uso de fotos e conteúdo continuam sujeitos ao aceite.
