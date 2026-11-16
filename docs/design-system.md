@@ -101,3 +101,15 @@ Felipe pode compor o Header com Container, usar Button como ação do menu e ân
 ### Revisão local
 
 Execute `npm ci` e `npm run dev` e abra `/dev/componentes`. Preencha o campo e acione “Limpar campo” por teclado. Com Tab, confira o anel de foco, o salto sobre o controle indisponível e o link “Ver estrutura”. Compare 390 e 1440 px. A rota retorna 404 no build de produção. A identidade definitiva e o uso de fotos e conteúdo continuam sujeitos ao aceite.
+
+## PR-009 · Serviços
+
+Felipe mantém o catálogo em `src/content/services.ts`. A seção lê o contrato `Service` e exibe somente entradas com nome aprovado e referência de aceite. Descrição, imagem e CTA têm aprovações independentes. O Card do PR-007 mantém a semântica de artigo na ausência de ação válida. Um destino aprovado transforma o card em um único link, identificado com o nome e o texto da ação. A imagem opcional usa next/image e a proporção 4:3 do Card.
+
+Com o catálogo atual vazio, o H2 e o estado “Catálogo em curadoria” seguem os frames [desktop](https://www.figma.com/design/hmKnzeyzoxJPO1ECJL3jnr/?node-id=12-17) e [mobile](https://www.figma.com/design/hmKnzeyzoxJPO1ECJL3jnr/?node-id=12-108). A seção usa os tons rosa, tinta e filete da proposta v1 e os mesmos arquivos de fontes locais do Hero. O aceite visual continua pendente. A grade com itens preenchidos é uma hipótese para revisão quando houver catálogo. A cliente ainda precisa fornecer nomes, descrições, fotos autorizadas e destinos. Preços dependem de conteúdo e contrato próprios.
+
+Para revisão, execute `npm ci` e `npm run dev`. Em `/dev/servicos` confira o catálogo atual. Abra “Conferir amostras de cards” para comparar um link com imagem e um artigo sem imagem usando dados simulados exclusivos da prévia. O PR inclui capturas nas três larguras em `docs/pr-009/`.
+
+Luan pode importar `Services` de `@/components/sections/Services`, inserir `<Services />` logo após `<Hero />` e incluir `sectionAnchors.services` em `Header.availableAnchors`. Para o PR-010, posicionar Sobre após Serviços. No PR-012, usar somente o destino de agendamento aprovado. Revisão cruzada do PR-009 atribuída a Kaua.
+
+Validação local do PR-009: instalação pelo lockfile, lint, typecheck e build passaram. O Chromium confirmou o estado de curadoria e as amostras em 390, 820 e 1440 px, sem overflow horizontal, com foco e ativação por teclado no card com destino. O servidor compilado retornou 200 em / e 404 na prévia. O Next em desenvolvimento identificou o SVG de demonstração como LCP na prévia isolada; os cards continuam usando carregamento padrão para sua posição prevista abaixo do Hero.
