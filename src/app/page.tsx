@@ -1,8 +1,14 @@
+import { Header } from "@/components/layout";
+import { Hero } from "@/components/sections/Hero";
+import { sectionAnchors } from "@/components/sections/anchors";
+
 export default function Home() {
   return (
-    <main className="p-6">
-      <h1 className="text-2xl font-semibold">Áurea Beauty Studio</h1>
-      <p className="mt-4">Ambiente em preparação técnica.</p>
-    </main>
+    <>
+      <Header availableAnchors={[sectionAnchors.hero]} />
+      <main id="conteudo-principal" tabIndex={-1}>
+        <Hero />
+      </main>
+    </>
   );
 }
