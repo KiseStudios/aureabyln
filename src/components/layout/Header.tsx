@@ -13,7 +13,12 @@ const navigation = [
   { label: "Contato", anchor: sectionAnchors.contact },
 ] as const;
 
-export function Header() {
+type NavigationAnchor = (typeof navigation)[number]["anchor"];
+
+export function Header({ availableAnchors }: { availableAnchors?: readonly NavigationAnchor[] }) {
+  const links = availableAnchors
+    ? navigation.filter(({ anchor }) => availableAnchors.includes(anchor))
+    : navigation;
   const [menuOpen, setMenuOpen] = useState(false);
 
   function closeMenu() {
@@ -40,7 +45,7 @@ export function Header() {
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-6 md:flex">
-          {navigation.map((item) => (
+          {links.map((item) => (
             <Link
               key={item.anchor}
               href={`#${item.anchor}`}
@@ -69,7 +74,7 @@ export function Header() {
         className="border-t border-neutral-200 bg-white md:hidden"
       >
         <Container className="flex flex-col gap-1 py-3">
-          {navigation.map((item) => (
+          {links.map((item) => (
             <Link
               key={item.anchor}
               href={`#${item.anchor}`}
