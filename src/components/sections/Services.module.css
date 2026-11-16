@@ -1,0 +1,53 @@
+@reference "../../styles/proposals/aurea-v1.css";
+
+@font-face {
+  font-family: "Services Display";
+  src: url("./fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Services Display";
+  src: url("./fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Services Body";
+  src: url("./fonts/dm-sans-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+}
+
+.section {
+  background: theme(colors.aurea-rose);
+  color: theme(colors.aurea-ink);
+  font-family: "Services Body", system-ui, sans-serif;
+}
+.title, .status {
+  font-family: "Services Display", Georgia, serif;
+  line-height: 1.08;
+}
+.title {
+  font-size: clamp(theme(fontSize.aurea-heading-mobile), 5vw, theme(fontSize.aurea-heading));
+}
+.empty {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  padding-block: 1.5rem;
+  border-block: 1px solid theme(colors.aurea-line);
+}
+.status {
+  font-style: italic;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+.note {
+  color: theme(colors.aurea-mute);
+  line-height: 1.4;
+}
+@media (min-width: 48rem) {
+  .empty {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+}
