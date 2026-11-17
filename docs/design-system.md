@@ -113,3 +113,15 @@ Para revisão, execute `npm ci` e `npm run dev`. Em `/dev/servicos` confira o ca
 Luan pode importar `Services` de `@/components/sections/Services`, inserir `<Services />` logo após `<Hero />` e incluir `sectionAnchors.services` em `Header.availableAnchors`. Para o PR-010, posicionar Sobre após Serviços. No PR-012, usar somente o destino de agendamento aprovado. Revisão cruzada do PR-009 atribuída a Kaua.
 
 Validação local do PR-009: instalação pelo lockfile, lint, typecheck e build passaram. O Chromium confirmou o estado de curadoria e as amostras em 390, 820 e 1440 px, sem overflow horizontal, com foco e ativação por teclado no card com destino. O servidor compilado retornou 200 em / e 404 na prévia. O Next em desenvolvimento identificou o SVG de demonstração como LCP na prévia isolada; os cards continuam usando carregamento padrão para sua posição prevista abaixo do Hero.
+
+## PR-010 · Sobre
+
+Felipe mantém a apresentação em `src/content/about.ts`, pelo contrato `ProfessionalProfile` exportado em `@/content`. Nome, posicionamento e biografia são avaliados individualmente: somente um campo com `status: "approved"` e `approvalReference` não vazia é apresentado. O retrato segue a mesma regra e usa `next/image`, as dimensões intrínsecas e o texto alternativo fornecido no manifesto. O placeholder gráfico não é tratado como fotografia.
+
+O layout de Sobre reorganiza a ordem para mobile (título, espaço do retrato, texto) e mantém a fotografia à esquerda e o conteúdo à direita em telas maiores. Sem material autorizado, a seção informa que a apresentação está em curadoria, sem publicar nome, cargo, trajetória ou credenciais presumidas. A prévia `/dev/sobre` usa textos explicitamente fictícios e retorna 404 fora do ambiente de desenvolvimento.
+
+Para revisar, execute `npm ci` e `npm run dev`, abra `/dev/sobre` e confira 390, 820 e 1440 px, leitura, ausência de overflow e contraste. O conteúdo da prévia é apenas amostra técnica; não copiar para o manifesto público.
+
+A integração na página principal permanece separada: Luan pode importar `About` de `@/components/sections/About`, inserir `<About />` logo após `<Services />` e habilitar `sectionAnchors.about` em `Header.availableAnchors` quando a seção estiver integrada. Esta entrega não altera `page.tsx`, Header, Footer, tokens globais nem os contratos de conteúdo.
+
+**Bloqueios de aceite:** a proposta visual desktop/mobile ainda precisa de aprovação registrada; a cliente precisa fornecer e autorizar o retrato e aprovar nome público, posicionamento e biografia. Até lá, o estado em curadoria é intencional e a entrega deve permanecer em rascunho.
