@@ -17,7 +17,7 @@ O Figma aprovado será a referência oficial da interface. O PDF UX representa b
 5. **ESLint 9.39.5:** flat config com `eslint-config-next` na mesma versão do Next.js, regras Core Web Vitals e TypeScript. O script chama a CLI do ESLint diretamente e rejeita warnings. Lint não é implícito no build do Next.js 16. A linha 10 foi avaliada, mas os plugins transitivos de importação, React e acessibilidade ainda declaram peers até a linha 9. Foi mantido ESLint 9.39.5 para respeitar esses contratos, sem overrides ou legacy-peer-deps. O npm informa depreciação por fim de suporte dessa linha; reavaliar a atualização quando todos os plugins declararem compatibilidade.
 6. **Dependências mínimas:** sem biblioteca de UI, animação, ícones, fontes remotas, analytics ou ferramenta de testes. Testes e CI devem ser introduzidos em suas entregas, com comandos reais.
 7. **Separação de responsabilidades:** `app/` compõe a aplicação; `components/ui`, `components/layout` e `components/sections` receberão módulos futuros; `lib/` e `types/` receberão funções e tipos quando necessários. Diretórios vazios são documentados, sem arquivos artificiais.
-8. **Segurança e colaboração:** `.gitignore` exclui dependências, saída do framework, logs e variáveis locais; não há variáveis necessárias nem `.env.example`. `.editorconfig` e `.gitattributes` padronizam texto, indentação e finais de linha.
+8. **Segurança e colaboração:** `.gitignore` exclui dependências, saída do framework, logs e variáveis locais; o preview funciona com os valores padrão de `.env.example`. `.editorconfig` e `.gitattributes` padronizam texto, indentação e finais de linha.
 
 ## Página provisória e limites
 
@@ -55,3 +55,23 @@ Para conferir a versão compilada, encerrar o servidor de desenvolvimento e exec
 O workflow `.github/workflows/ci.yml` executa instalação pelo lockfile, lint, typecheck e build em PRs para main e pushes na main, com Node.js 24, cache npm, permissão `contents: read` e actions oficiais fixadas por SHA. Não há suíte de testes, segredos personalizados ou deploy. Falhas dos comandos interrompem o job; concorrência e timeout limitam execuções redundantes.
 
 Resultados, baseline, limitações de dependências, revisão cruzada e bloqueios do PR-004 estão em [ci-quality.md](ci-quality.md). O PR-004 prepara tokens isolados em `src/styles/proposals/` e âncoras em `src/components/sections/`. A promoção do tema para o CSS global depende de aprovação visual.
+
+## Homepage integrada e SEO
+
+A página compõe Header, conteúdo principal e Footer. O link de salto leva a `#conteudo-principal`. Header e Footer usam os mesmos destinos, na ordem abaixo.
+
+| Componente | Destino |
+| --- | --- |
+| Hero | `#inicio` |
+| Services | `#servicos` |
+| About | `#sobre` |
+| Gallery | `#resultados` |
+| Contact | `#contato` |
+
+O Hero fornece o H1. Cada seção administra seu conteúdo e os estados condicionados à aprovação. As fontes locais são declaradas uma vez no CSS global. Hero e Contact validam o mesmo número de agendamento.
+
+O layout define título, descrição, idioma e Open Graph. O build padrão emite `noindex, nofollow`, bloqueia rastreamento em robots.txt e gera sitemap sem entradas. Um build de produção com `ENABLE_INDEXING=true` e `SITE_URL` contendo somente a origem HTTPS oficial habilita canonical, URL de compartilhamento e a entrada da homepage no sitemap. Manter indexação desligada em homologação. Recompilar após mudar a configuração. A imagem social aguarda material autorizado.
+
+Para revisar, executar `npm ci` e `npm run dev` nesta branch e abrir http://localhost:3000. Comparar a página em 390, 820 e 1440 px com [as capturas](pr-013/) e o [handoff visual](design-system.md). Percorrer as cinco âncoras pelo menu e pelo rodapé, testar o salto por teclado e conferir os estados de curadoria. Em desenvolvimento, a rota `/dev/resultados` permite testar o diálogo com amostras locais.
+
+Antes da publicação, obter aceite visual e editorial, fotos autorizadas, catálogo, texto biográfico, resultados com autorização, número comercial e domínio. Felipe revisa a integração. No PR-014 aprofundar contraste, teclado e leitores de tela com conteúdo final. No PR-015 medir LCP, CLS e INP, incluindo o impacto das fotografias autorizadas.

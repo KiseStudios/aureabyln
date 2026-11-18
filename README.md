@@ -1,10 +1,10 @@
 # Áurea Beauty Studio
 
-Website institucional da Áurea Beauty Studio, de Lorrayne Nunes, desenvolvido pela Kise Studios. O MVP apresentará a profissional, serviços e resultados autorizados e encaminhará visitantes para uma conversa no WhatsApp. Essas funcionalidades ainda não foram implementadas.
+Website institucional da Áurea Beauty Studio, desenvolvido pela Kise Studios.
 
-## Estado atual: Onda 0 — fundação, conteúdo e CI
+## Homepage integrada para homologação
 
-PR-001 e PR-002 estão integrados à `main`: fundação técnica e estrutura de conteúdo/assets provisórios. O PR-003 está integrado e executa a CI. A rota `/` contém uma identificação neutra e a mensagem de preparação técnica. Não há conteúdo comercial, componentes finais, integrações, autenticação, banco de dados, APIs ou publicação em produção.
+A rota `/` reúne Header, Hero, Serviços, Sobre, Resultados, Contato e Footer. Quando faltam materiais autorizados, as seções exibem seus estados de curadoria. O agendamento depende da configuração validada do canal de WhatsApp.
 
 O **Figma aprovado é a fonte oficial da interface**: desktop, mobile, tipografia, cores, espaçamentos e interações. PDFs e a prancha do Instagram @aureabyln são referências de planejamento e conteúdo; não substituem o handoff. A proposta visual v1 do PR-004 aguarda aceite. Veja os frames e os critérios em [docs/design-system.md](docs/design-system.md). Nenhuma imagem da prancha foi incorporada à aplicação.
 
@@ -37,7 +37,7 @@ npm run dev
 
 Para revisar esta entrega, use `git fetch origin` e `git switch feat/pr-004-design-foundation`. Novos trabalhos devem partir da `main` atualizada após seus pré-requisitos serem integrados.
 
-Acesse http://localhost:3000. `npm ci` reproduz o lockfile; use `npm install` ao alterar dependências, revisando o diff do manifesto e do lockfile. Nenhuma variável de ambiente é necessária nesta etapa, portanto não há `.env.example`.
+Acesse http://localhost:3000. `npm ci` reproduz o lockfile; use `npm install` ao alterar dependências, revisando o diff do manifesto e do lockfile. O preview funciona com a configuração padrão de [.env.example](.env.example). Consulte a estratégia de publicação em [docs/architecture.md](docs/architecture.md#homepage-integrada-e-seo).
 
 ## Comandos disponíveis
 

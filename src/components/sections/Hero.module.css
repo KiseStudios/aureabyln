@@ -65,3 +65,7 @@
   .hero { padding-block: 4rem; }
   .media { aspect-ratio: 600 / 552; }
 }
+
+.title, .study {
+  font-family: "Instrument Serif", Georgia, serif;
+}

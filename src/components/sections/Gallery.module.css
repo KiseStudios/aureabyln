@@ -1,25 +1,13 @@
 @reference "../../styles/proposals/aurea-v1.css";
 
-@font-face {
-  font-family: "Gallery Display";
-  src: url("./fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Gallery Body";
-  src: url("./fonts/dm-sans-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-
 .section {
   background: theme(colors.aurea-paper);
   color: theme(colors.aurea-ink);
-  font-family: "Gallery Body", system-ui, sans-serif;
 }
 
 .title {
   max-width: 18ch;
-  font-family: "Gallery Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(theme(fontSize.aurea-heading-mobile), 5vw, theme(fontSize.aurea-heading));
   line-height: 1.08;
   text-wrap: balance;
@@ -35,7 +23,7 @@
 }
 
 .status {
-  font-family: "Gallery Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   font-style: italic;
   line-height: 1.08;

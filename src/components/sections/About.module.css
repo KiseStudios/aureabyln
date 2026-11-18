@@ -1,26 +1,8 @@
 @reference "../../styles/proposals/aurea-v1.css";
 
-@font-face {
-  font-family: "About Display";
-  src: url("./fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "About Display";
-  src: url("./fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "About Body";
-  src: url("./fonts/dm-sans-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-
 .section {
   background: theme(colors.aurea-paper);
   color: theme(colors.aurea-ink);
-  font-family: "About Body", system-ui, sans-serif;
 }
 
 .layout {
@@ -31,7 +13,7 @@
 
 .title {
   grid-row: 1;
-  font-family: "About Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(theme(fontSize.aurea-heading-mobile), 5vw, theme(fontSize.aurea-heading));
   line-height: 1.08;
   text-wrap: balance;
@@ -69,7 +51,7 @@
 }
 
 .portraitPlaceholder span {
-  font-family: "About Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-style: italic;
   line-height: 1.08;
@@ -96,7 +78,7 @@
 }
 
 .name {
-  font-family: "About Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.08;
   overflow-wrap: anywhere;

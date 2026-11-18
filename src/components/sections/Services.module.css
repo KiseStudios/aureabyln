@@ -1,29 +1,11 @@
 @reference "../../styles/proposals/aurea-v1.css";
 
-@font-face {
-  font-family: "Services Display";
-  src: url("./fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Services Display";
-  src: url("./fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Services Body";
-  src: url("./fonts/dm-sans-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-
 .section {
   background: theme(colors.aurea-rose);
   color: theme(colors.aurea-ink);
-  font-family: "Services Body", system-ui, sans-serif;
 }
 .title, .status {
-  font-family: "Services Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   line-height: 1.08;
 }
 .title {
