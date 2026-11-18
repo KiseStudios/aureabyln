@@ -15,8 +15,12 @@ const previewItems: readonly GalleryEntry[] = imageSlots.gallery.map((slot, inde
   image: sample(slot.value),
 }));
 
-export default function GalleryPreview() {
+export default async function GalleryPreview({
+  searchParams,
+}: { searchParams: Promise<{ estado?: string }> }) {
   if (process.env.NODE_ENV !== "development") notFound();
+
+  const single = (await searchParams).estado === "unica";
 
   return (
     <main>
@@ -27,7 +31,7 @@ export default function GalleryPreview() {
           publicados na galeria real.
         </p>
       </header>
-      <Gallery items={previewItems} />
+      <Gallery items={single ? previewItems.slice(0, 1) : previewItems} />
     </main>
   );
 }
