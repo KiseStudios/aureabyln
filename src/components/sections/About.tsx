@@ -1,19 +1,16 @@
+import { approvedValue } from "@/content/approved";
 import Image from "next/image";
-import { professional, type ContentValue, type ProfessionalProfile } from "@/content";
+import { professional, type ProfessionalProfile } from "@/content";
 import { Container, Section } from "@/components/ui";
 import { sectionAnchors } from "./anchors";
 import styles from "./About.module.css";
 
-function approved<T>(field: ContentValue<T>): T | undefined {
-  if (field.status !== "approved" || !field.approvalReference.trim()) return undefined;
-  return field.value;
-}
 
 export function About({ profile = professional }: { profile?: ProfessionalProfile }) {
-  const name = approved(profile.name)?.trim();
-  const positioning = approved(profile.positioning)?.trim();
-  const biography = approved(profile.biography)?.trim();
-  const portrait = approved(profile.image);
+  const name = approvedValue(profile.name)?.trim();
+  const positioning = approvedValue(profile.positioning)?.trim();
+  const biography = approvedValue(profile.biography)?.trim();
+  const portrait = approvedValue(profile.image);
   const copyPending = !name || !positioning || !biography;
   const hasCopy = Boolean(name || positioning || biography);
 

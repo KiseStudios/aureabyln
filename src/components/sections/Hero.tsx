@@ -1,3 +1,4 @@
+import { approvedValue } from "@/content/approved";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { professional, type ProfessionalProfile } from "@/content";
@@ -7,7 +8,8 @@ import styles from "./Hero.module.css";
 
 export function Hero({ profile = professional }: { profile?: ProfessionalProfile }) {
   const bookingUrl = buildWhatsAppUrl(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER);
-  const portrait = profile.image;
+  const portrait = approvedValue(profile.image);
+  const positioning = approvedValue(profile.positioning);
   return (
     <Section id={sectionAnchors.hero} aria-labelledby="hero-title" className={styles.hero}>
       <Container className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
@@ -15,7 +17,7 @@ export function Hero({ profile = professional }: { profile?: ProfessionalProfile
           <h1 id="hero-title" className={styles.title}>
             Áurea <em className={styles.accent}>Beauty Studio</em>
           </h1>
-          {profile.positioning.status === "approved" && <p>{profile.positioning.value}</p>}
+          {positioning && <p>{positioning}</p>}
           {bookingUrl ? (
             <Button href={bookingUrl}>Agendar horário</Button>
           ) : (
@@ -29,10 +31,10 @@ export function Hero({ profile = professional }: { profile?: ProfessionalProfile
         </div>
         <figure className="min-w-0">
           <div className={styles.media}>
-            {portrait.status === "approved" ? (
+            {portrait ? (
               <Image
-                src={portrait.value.src}
-                alt={portrait.value.alt}
+                src={portrait.src}
+                alt={portrait.alt}
                 fill
                 sizes="(min-width: 1440px) 600px, (min-width: 1280px) calc(50vw - 120px), (min-width: 768px) calc(50vw - 72px), calc(100vw - 48px)"
                 className="object-cover"
@@ -42,7 +44,7 @@ export function Hero({ profile = professional }: { profile?: ProfessionalProfile
               <span aria-hidden="true" className={styles.study}>Á</span>
             )}
           </div>
-          {portrait.status === "placeholder" && (
+          {!portrait && (
             <figcaption className="mt-2 text-sm">Estudo gráfico provisório · retrato da profissional pendente.</figcaption>
           )}
         </figure>

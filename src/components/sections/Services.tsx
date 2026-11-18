@@ -1,14 +1,12 @@
+import { approvedValue } from "@/content/approved";
 import { Container, Section, Card } from "@/components/ui";
-import { services, type ContentValue, type Service } from "@/content";
+import { services, type Service } from "@/content";
 import { sectionAnchors } from "./anchors";
 import styles from "./Services.module.css";
 
-function approved<T>(field: ContentValue<T>) {
-  return field.status === "approved" && field.approvalReference.trim() ? field.value : undefined;
-}
 
 function serviceLink(cta: Service["cta"]) {
-  const action = approved(cta);
+  const action = approvedValue(cta);
   const href = action?.href.trim();
   if (!action?.label.trim() || !href || href === "#") return;
   if (/^(?:\/(?!\/)|#)/.test(href) || (/^https?:\/\//i.test(href) && URL.canParse(href))) {
@@ -18,7 +16,7 @@ function serviceLink(cta: Service["cta"]) {
 
 export function Services({ catalog = services }: { catalog?: readonly Service[] }) {
   const entries = catalog.flatMap((service) => {
-    const title = approved(service.name)?.trim();
+    const title = approvedValue(service.name)?.trim();
     return title ? [{ service, title }] : [];
   });
 
@@ -35,12 +33,12 @@ export function Services({ catalog = services }: { catalog?: readonly Service[] 
           <ul className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {entries.map(({ service, title }) => {
               const action = serviceLink(service.cta);
-              const description = approved(service.description);
+              const description = approvedValue(service.description);
               return (
                 <li key={service.id} className="min-w-0 wrap-anywhere">
                   <Card
                     title={title}
-                    image={approved(service.image)}
+                    image={approvedValue(service.image)}
                     href={action?.href}
                     description={
                       (description || action) && <>

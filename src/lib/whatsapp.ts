@@ -9,9 +9,11 @@ export function buildWhatsAppUrl(
   phone: string | null | undefined,
   message = DEFAULT_WHATSAPP_MESSAGE,
 ): string | null {
-  const number = phone?.replace(/\D/g, "") ?? "";
+  const input = phone?.trim();
+  if (!input || !/^\+?[\d ().-]+$/.test(input)) return null;
+  const number = input.replace(/\D/g, "");
 
-  if (number.length < 10 || number.length > 15) return null;
+  if (!/^[1-9]\d{9,14}$/.test(number)) return null;
 
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
