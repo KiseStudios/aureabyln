@@ -1,20 +1,8 @@
 @reference "../../styles/proposals/aurea-v1.css";
 
-@font-face {
-  font-family: "Contact Display";
-  src: url("./fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Contact Body";
-  src: url("./fonts/dm-sans-latin-400-normal.woff2") format("woff2");
-  font-display: swap;
-}
-
 .section {
   background: theme(colors.aurea-wine);
   color: theme(colors.aurea-paper);
-  font-family: "Contact Body", system-ui, sans-serif;
 }
 
 .panel {
@@ -42,7 +30,7 @@
 
 .title {
   max-width: 15ch;
-  font-family: "Contact Display", Georgia, serif;
+  font-family: "Instrument Serif", Georgia, serif;
   font-size: clamp(2.75rem, 6vw, 4.5rem);
   line-height: 1.05;
   text-wrap: balance;

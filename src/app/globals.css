@@ -1,8 +1,24 @@
 @import "tailwindcss";
 
-/* Base provisória. Identidade visual e tokens serão definidos no PR-004. */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../components/sections/fonts/instrument-serif-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../components/sections/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("../components/sections/fonts/dm-sans-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+}
+
 body {
-  background: white;
-  color: black;
-  font-family: system-ui, sans-serif;
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #34241f;
+  background: #f9f3ea;
 }

@@ -1,34 +1,31 @@
-import localFont from "next/font/local";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import Image from "next/image";
 import { professional, type ProfessionalProfile } from "@/content";
 import { Button, Container, Section } from "@/components/ui";
 import { sectionAnchors } from "./anchors";
 import styles from "./Hero.module.css";
 
-const display = localFont({
-  src: [
-    { path: "./fonts/instrument-serif-latin-400-normal.woff2", style: "normal", weight: "400" },
-    { path: "./fonts/instrument-serif-latin-400-italic.woff2", style: "italic", weight: "400" },
-  ],
-  fallback: ["Georgia", "serif"],
-});
-
-const body = localFont({ src: "./fonts/dm-sans-latin-400-normal.woff2", fallback: ["system-ui"] });
-
 export function Hero({ profile = professional }: { profile?: ProfessionalProfile }) {
+  const bookingUrl = buildWhatsAppUrl(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER);
   const portrait = profile.image;
   return (
-    <Section id={sectionAnchors.hero} aria-labelledby="hero-title" className={`${styles.hero} ${body.className}`}>
+    <Section id={sectionAnchors.hero} aria-labelledby="hero-title" className={styles.hero}>
       <Container className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
         <div className="flex min-w-0 flex-col items-start gap-6">
-          <h1 id="hero-title" className={`${styles.title} ${display.className}`}>
+          <h1 id="hero-title" className={styles.title}>
             Áurea <em className={styles.accent}>Beauty Studio</em>
           </h1>
           {profile.positioning.status === "approved" && <p>{profile.positioning.value}</p>}
-          <p id="booking-status">O agendamento pelo site ainda está indisponível.</p>
-          <Button disabled aria-describedby="booking-status" className={styles.booking}>
-            Agendar horário
-          </Button>
+          {bookingUrl ? (
+            <Button href={bookingUrl}>Agendar horário</Button>
+          ) : (
+            <>
+              <p id="booking-status">O agendamento pelo site ainda está indisponível.</p>
+              <Button disabled aria-describedby="booking-status" className={styles.booking}>
+                Agendar horário
+              </Button>
+            </>
+          )}
         </div>
         <figure className="min-w-0">
           <div className={styles.media}>
@@ -42,7 +39,7 @@ export function Hero({ profile = professional }: { profile?: ProfessionalProfile
                 preload
               />
             ) : (
-              <span aria-hidden="true" className={`${styles.study} ${display.className}`}>Á</span>
+              <span aria-hidden="true" className={styles.study}>Á</span>
             )}
           </div>
           {portrait.status === "placeholder" && (
