@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Link from "next/link";
 import { Container } from "@/components/ui";
 import { sectionAnchors } from "@/components/sections/anchors";
 
@@ -45,24 +44,24 @@ export function Header({ availableAnchors }: { availableAnchors?: readonly Navig
       </a>
 
       <Container className="flex min-h-20 items-center justify-between gap-6">
-        <Link
+        <a
           href={`#${sectionAnchors.hero}`}
           onClick={closeMenu}
           className="shrink-0 text-lg font-semibold tracking-wide text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-4"
           aria-label="Áurea Beauty Studio — início"
         >
           Áurea
-        </Link>
+        </a>
 
         <nav aria-label="Navegação principal" className="hidden items-center gap-6 md:flex">
           {links.map((item) => (
-            <Link
+            <a
               key={item.anchor}
               href={`#${item.anchor}`}
               className="text-sm text-neutral-700 transition-colors hover:text-neutral-950 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -86,14 +85,14 @@ export function Header({ availableAnchors }: { availableAnchors?: readonly Navig
       >
         <Container className="flex flex-col gap-1 py-3">
           {links.map((item) => (
-            <Link
+            <a
               key={item.anchor}
               href={`#${item.anchor}`}
               onClick={closeMenu}
               className="flex min-h-11 items-center rounded-md px-3 text-sm text-neutral-800 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </Container>
       </nav>
