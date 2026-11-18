@@ -22,3 +22,8 @@ body {
   color: #34241f;
   background: #f9f3ea;
 }
+
+/* Allow enlarged text to wrap inside the mobile columns. */
+main {
+  overflow-wrap: anywhere;
+}

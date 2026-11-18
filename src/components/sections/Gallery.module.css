@@ -53,8 +53,7 @@
   cursor: zoom-in;
 }
 
-.thumbnail:focus-visible,
-.dialogButton:focus-visible {
+.thumbnail:focus-visible {
   outline: 3px solid theme(colors.aurea-focus);
   outline-offset: 3px;
 }
@@ -81,6 +80,16 @@
   padding: clamp(0.75rem, 2vw, 1.5rem);
   background: #292421;
   color: #fff;
+}
+
+/* Keep the page in place while the native modal scrolls. */
+:global(html):has(.dialog[open]) {
+  overflow: hidden;
+}
+
+.dialogButton:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
 }
 
 .dialog::backdrop {

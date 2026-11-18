@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui";
 import { sectionAnchors } from "@/components/sections/anchors";
@@ -21,15 +21,25 @@ export function Header({ availableAnchors }: { availableAnchors?: readonly Navig
     : navigation;
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const menuButton = useRef<HTMLButtonElement>(null);
+
   function closeMenu() {
     setMenuOpen(false);
   }
 
   return (
-    <header className="relative z-20 border-b border-neutral-200 bg-white">
+    <header
+      className="relative z-20 border-b border-neutral-200 bg-white"
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen && menuButton.current?.offsetWidth) {
+          closeMenu();
+          menuButton.current.focus();
+        }
+      }}
+    >
       <a
         href="#conteudo-principal"
-        className="sr-only z-50 rounded-md bg-white p-3 text-neutral-950 focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:outline-2 focus:outline-offset-2"
+        className="sr-only z-50 rounded-md bg-white p-3 text-neutral-950 focus:not-sr-only focus:absolute focus:left-4 focus:right-4 focus:w-fit focus:max-w-[calc(100%-2rem)] focus:whitespace-normal focus:top-4 focus:outline-2 focus:outline-offset-2"
       >
         Pular para o conteúdo
       </a>
@@ -57,6 +67,7 @@ export function Header({ availableAnchors }: { availableAnchors?: readonly Navig
         </nav>
 
         <button
+          ref={menuButton}
           type="button"
           className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-neutral-300 px-3 text-sm font-medium text-neutral-900 hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-4 md:hidden"
           aria-expanded={menuOpen}
